@@ -1,0 +1,18 @@
+syntax = "proto3";
+package api;
+
+import "google/api/annotations.proto";
+
+message PingMessage {
+  string ping = 1;
+  int64 time = 2;
+}
+
+service Api {
+  rpc ping(PingMessage) returns (PingMessage) {
+   option (google.api.http) = {
+    post: "/v1/ping"
+    body: "*"
+   };
+  }
+}
